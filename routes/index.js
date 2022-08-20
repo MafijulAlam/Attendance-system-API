@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const authRoutes = require('./auth');
+const userRoutes = require('./users');
+const adminAttendance = require('./adminAttendance');
+const studentAttendance = require('./studentAttendance');
+const authenticate = require('../middleware/authenticate');
+router.use('/api/v1/auth', authRoutes);
+router.use('/api/v1/user', authenticate, userRoutes);
+router.use('/api/v1/admin/attendance', authenticate, adminAttendance);
+router.use('/api/v1/student/attendance', authenticate, studentAttendance);
+module.exports = router;
